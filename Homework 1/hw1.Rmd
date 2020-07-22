@@ -1,0 +1,57 @@
+---
+title: "IE 452 Homework 1"
+author: "Batıhan Akça 21502824"
+date: "06 04 2020"
+output: html_document
+---
+
+```{r}
+case1_losses <- 0
+case2_losses <- 0
+```
+
+```{r}
+# meeting friends
+
+for (i in 1:100000) {
+  random_vector <- runif(1000, 0, 1)
+  
+  losses    <- sum(random_vector <= 1/4)
+  wins      <- 1000 - losses
+  
+  hapiness_points <- wins*2 - losses*1
+  
+  if (hapiness_points<0) {
+    case1_losses <- case1_losses + 1 
+  }
+}
+```
+
+```{r}
+# studying research
+
+for (i in 1:100000) {
+  random_vector <- runif(1000, 0, 1)
+  
+  losses    <- sum(random_vector <= 1/3)
+  wins      <- 1000 - losses
+  
+  hapiness_points <- wins*1002 - losses*2001
+  
+  if (hapiness_points<0) {
+    case2_losses <- case2_losses + 1 
+  }
+}
+```
+
+```{r}
+# results
+
+case1_estimation <- case1_losses/100000
+case2_estimation <- case2_losses/100000
+
+print("After 100000 Trials for Both of Cases")
+print(paste0("Meeting Friends Loss Estimation = ",case1_estimation))
+print(paste0("Studying Research Loss Estimation = ",case2_estimation))
+```
+
